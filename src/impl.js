@@ -1,1 +1,1 @@
-export function clamp(x, lo, hi) { return Math.min(hi, Math.max(lo, x)); }
+export function clamp(x, lo, hi) { return Math.max(lo, x); }
