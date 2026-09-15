@@ -1,1 +1,1 @@
-export function absDiff(a, b) { return a - b; }
+export function absDiff(a, b) { return Math.abs(a - b); }
