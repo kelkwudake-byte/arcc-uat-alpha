@@ -11,7 +11,7 @@ It throws `TypeError` when any argument is not a finite number and `RangeError` 
 advancing towards `end` (exclusive). A positive step counts up, a negative step counts
 down; an incompatible step direction or equal endpoints returns `[]`.
 It throws `TypeError` for non-finite or non-number arguments, and `RangeError`
-for a zero step, a step too small to advance, or more than 1,000,000 items.
+for a zero step or a step too small to advance at floating-point precision.
 
 ## Tests
 
