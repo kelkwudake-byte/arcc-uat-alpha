@@ -26,3 +26,13 @@ test('invalid arguments raise TypeError', () => {
     assert.throws(() => range(...args), TypeError);
   }
 });
+
+test('range rejects a step that does not advance at floating-point precision', () => {
+  assert.throws(() => range(1e20, 1e21, 1), RangeError);
+  assert.throws(() => range(-1e20, -1e21, -1), RangeError);
+});
+
+test('range rejects excessively large results rather than exhausting memory', () => {
+  assert.throws(() => range(0, 1_000_002), RangeError);
+  assert.deepEqual(range(2, 0, -1), [2, 1]);
+});
