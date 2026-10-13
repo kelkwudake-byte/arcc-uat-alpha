@@ -7,14 +7,18 @@ export function range(start, end, step = 1) {
   }
 
   const values = [];
-  if (step > 0) {
-    for (let value = start; value < end; value += step) {
-      values.push(value);
+  const maxLength = 1_000_000;
+  const ascending = step > 0;
+  for (let value = start; ascending ? value < end : value > end;) {
+    if (values.length >= maxLength) {
+      throw new RangeError('range exceeds maximum supported length');
     }
-  } else {
-    for (let value = start; value > end; value += step) {
-      values.push(value);
+    const next = value + step;
+    if (next === value) {
+      throw new RangeError('range step is too small to make progress');
     }
+    values.push(value);
+    value = next;
   }
   return values;
 }

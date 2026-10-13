@@ -30,3 +30,12 @@ test('range rejects non-finite or non-number arguments', () => {
   assert.throws(() => range(0, 5, NaN), TypeError);
   assert.throws(() => range(0, 5, '1'), TypeError);
 });
+
+test('range rejects steps too small to advance either direction', () => {
+  assert.throws(() => range(1, 2, Number.MIN_VALUE), RangeError);
+  assert.throws(() => range(2, 1, -Number.MIN_VALUE), RangeError);
+});
+
+test('range rejects oversized results instead of returning partial ranges', () => {
+  assert.throws(() => range(0, 1_000_002), RangeError);
+});
